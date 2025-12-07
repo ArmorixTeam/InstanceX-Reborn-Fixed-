@@ -1,41 +1,33 @@
-name: Build Theos Package (macOS nyxolz yes)
+name: Build Theos Tweak
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: macos-latest
-
+    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install Homebrew dependencies
-        run: |
-          brew install lzip clang make git
-
-      - name: Install Theos
-        run: |
-          git clone --recursive https://github.com/theos/theos.git ~/theos
-
-      - name: Install iOS SDK (iPhoneOS14.5)
-        run: |
-          mkdir -p ~/theos/sdks
-          curl -L -o sdk.tar.lzma https://github.com/theos/sdks/releases/download/14.5/iPhoneOS14.5.sdk.tar.lzma
-          tar --lzma -xf sdk.tar.lzma -C ~/theos/sdks
-
-      - name: Build tweak
-        env:
-          THEOS: ~/theos
-        run: |
-          make package
-
-      - name: Upload .deb artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: theos-deb
-          path: ./packages/*.deb
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Theos
+      run: |
+        git clone --recursive https://github.com/theos/theos.git $HOME/theos
+        echo "THEOS=$HOME/theos" >> $GITHUB_ENV
+        
+    - name: Build tweak (unsigned)
+      run: |
+        make package FINALPACKAGE=1
+      env:
+        THEOS_PACKAGE_SCHEME: rootless
+        
+    - name: Upload DEB artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: tweak-deb
+        path: packages/*.deb
