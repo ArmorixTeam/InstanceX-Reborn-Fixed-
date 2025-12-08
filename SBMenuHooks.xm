@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 #import "InstanceModel.h"
-#import "InstanceManager.mm"
+#import "InstanceManager.h"
 
 @interface SBIcon : NSObject
 - (NSString *)applicationBundleID;
