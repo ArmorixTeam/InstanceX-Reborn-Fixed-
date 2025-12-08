@@ -11,10 +11,10 @@
 - (id)icon;
 @end
 
-
 extern IXInstanceManager *IXManager(void);
 
 %hook SBIconView
+
 - (NSArray *)applicationShortcutItems {
     NSArray *orig = %orig ?: @[];
     id icon = nil;
@@ -30,6 +30,7 @@ extern IXInstanceManager *IXManager(void);
     UIMutableApplicationShortcutItem *add = [[UIMutableApplicationShortcutItem alloc] initWithType:[@"com.instancex.add:" stringByAppendingString:bundleID] localizedTitle:@"Add Instance"];
     return [orig arrayByAddingObjectsFromArray:@[i2,i3,i4,add]];
 }
+
 - (void)performActionForShortcutItem:(UIApplicationShortcutItem *)item fromSource:(id)source {
     NSString *t = item.type;
     NSRange r = [t rangeOfString:@":" options:NSBackwardsSearch];
@@ -42,4 +43,5 @@ extern IXInstanceManager *IXManager(void);
     }
     %orig;
 }
+
 %end
