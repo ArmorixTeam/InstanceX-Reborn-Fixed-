@@ -30,7 +30,7 @@ jobs:
         
     - name: Build tweak (unsigned)
       run: |
-        make package FINALPACKAGE=1 THEOS_DEVICE_IP= THEOS_DEVICE_PORT= -j$(sysctl -n hw.ncpu)
+        make package
       env:
         THEOS_PACKAGE_SCHEME: rootless
         TARGET: iphone:15.6
