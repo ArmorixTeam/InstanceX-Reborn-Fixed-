@@ -1,7 +1,6 @@
-#import <Foundation/Foundation.h>
-#import <spawn.h>
-#import "InstanceModel.h"
-#import "LogosCompat.h"
+#import "ContainerManager.h"
+#import "InstanceManager.h"
+#import <stdlib.h>
 
 @interface IXInstanceManager : NSObject
 @property(nonatomic) NSMutableDictionary<NSString*, IXAppState*> *apps;
