@@ -2,6 +2,23 @@
 #import "InstanceModel.h"
 #import "InstanceManager.mm"
 
+@interface SBIcon : NSObject
+- (NSString *)applicationBundleID;
+- (NSString *)displayName;
+@end
+
+@interface SBIconView : UIView
+- (id)icon;
+@end
+
+@interface UIMutableApplicationShortcutItem : NSObject
+- (instancetype)initWithType:(NSString *)type localizedTitle:(NSString *)title;
+@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *localizedTitle;
+@end
+
+extern IXInstanceManager *IXManager(void);
+
 extern IXInstanceManager *IXManager(void);
 
 %hook SBIconView
