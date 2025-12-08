@@ -110,7 +110,7 @@
 
     // Convert env dict to char**
     NSUInteger n = env.count;
-    char **envp = malloc((n+1) * sizeof(char*));
+    char **envp = (char **)malloc((n+1) * sizeof(char*));
     NSUInteger i = 0;
     for (NSString *k in env) {
         NSString *v = env[k];
