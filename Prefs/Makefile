@@ -11,5 +11,6 @@ InstanceXPrefs_FRAMEWORKS = UIKit
 InstanceXPrefs_PRIVATE_FRAMEWORKS = Preferences
 InstanceXPrefs_INSTALL_PATH = /Library/PreferenceBundles
 InstanceXPrefs_CFLAGS = -fobjc-arc
+InstanceXPrefs_LDFLAGS = -undefined dynamic_lookup
 
 include $(THEOS_MAKE_PATH)/bundle.mk
