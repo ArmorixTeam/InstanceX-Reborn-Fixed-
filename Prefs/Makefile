@@ -9,8 +9,9 @@ InstanceXPrefs_FILES = IXRootListController.mm
 InstanceXPrefs_FRAMEWORKS = UIKit
 InstanceXPrefs_INSTALL_PATH = /Library/PreferenceBundles
 
-InstanceXPrefs_LDFLAGS += -undefined dynamic_lookup
+InstanceXPrefs_PREFERENCES_PLIST = InstanceX
 
+InstanceXPrefs_LDFLAGS += -undefined dynamic_lookup
 InstanceXPrefs_CFLAGS = -fobjc-arc
 
 include $(THEOS_MAKE_PATH)/bundle.mk
